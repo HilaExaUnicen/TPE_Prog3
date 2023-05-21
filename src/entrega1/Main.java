@@ -136,7 +136,7 @@ public class Main {
 //		dfsM.tiempofin();
 		
 		System.out.println("BFS Hilario");
-		BFSHila<?> bfsH = new BFSHila<>(grafo2);
+		BFSHila bfsH = new BFSHila(grafo2);
 		System.out.println(bfsH.bfsForest());
 		
 		System.out.println("BFS Mauro");

@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.Queue;
 
 
-public class BFSHila<T> {
-	private Grafo<T> grafo;
+public class BFSHila {
+	private Grafo<?> grafo;
 	private Map<Integer, Boolean> visitado;
 	
-	public BFSHila(Grafo<T> grafo) {
+	public BFSHila(Grafo<?> grafo) {
 		this.grafo = grafo;
 		this.visitado = new HashMap<>();
 	}
