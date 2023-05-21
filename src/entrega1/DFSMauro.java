@@ -54,10 +54,6 @@ public class DFSMauro<T> {
         tiemposFinalizacion.put(vertice, tiempo++);
     }
     
-	public void imprimirTiempoDescubrimiento() {
-		System.out.println(this.tiemposDescubrimiento);
-	}
-    
     public enum Color {
         BLANCO,
         AMARILLO,

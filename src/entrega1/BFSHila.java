@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 
 
 public class BFSHila<T> {
@@ -16,7 +17,7 @@ public class BFSHila<T> {
 		this.visitado = new HashMap<>();
 	}
 	
-	public List<Integer> bfsVisit() {
+	public List<Integer> bfsForest() {
 		LinkedList<Integer> recorrido = new LinkedList<>();
 		
 		Iterator<Integer> itVertices = this.grafo.obtenerVertices();
@@ -37,7 +38,7 @@ public class BFSHila<T> {
 	}
 	
 	private void bfs(Integer vertice, List<Integer> recorrido) {
-		LinkedList<Integer> cola = new LinkedList<>();
+		Queue<Integer> cola = new LinkedList<>();
 		this.visitado.put(vertice, true);
 		cola.add(vertice);
 		

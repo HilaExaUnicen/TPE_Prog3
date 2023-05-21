@@ -124,17 +124,20 @@ public class Main {
 		
 		System.out.println("DFS Hilario");
 		DFSHila<?> dfsH = new DFSHila<>(grafo2);
-		System.out.println(dfsH.dfsVisit());
-		dfsH.imprimirTiempoDescubrimiento();
+		System.out.println(dfsH.dfsForest());
+//		dfsH.imprimirTiempoDescubrimiento();
+//		dfsH.tiempofin();
+		
 		
 		System.out.println("DFS Mauro");
 		DFSMauro<?> dfsM = new DFSMauro<>(grafo2);
 		System.out.println(dfsM.dfsForest());
-		dfsM.imprimirTiempoDescubrimiento();
+//		dfsM.imprimirTiempoDescubrimiento();
+//		dfsM.tiempofin();
 		
 		System.out.println("BFS Hilario");
 		BFSHila<?> bfsH = new BFSHila<>(grafo2);
-		System.out.println(bfsH.bfsVisit());
+		System.out.println(bfsH.bfsForest());
 		
 		System.out.println("BFS Mauro");
 		BFSMauro<?> bfsM = new BFSMauro<>(grafo2);

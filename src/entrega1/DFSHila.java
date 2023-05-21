@@ -19,7 +19,7 @@ public class DFSHila<T> {
 		this.tiempoFinalizacion = new HashMap<>();
 	}
 	
-	public List<Integer> dfsVisit() {
+	public List<Integer> dfsForest() {
 		LinkedList<Integer> ordenDescubrimiento = new LinkedList<>();
 		Iterator<Integer> itVertices = this.grafo.obtenerVertices();
 		int tiempo;
@@ -58,7 +58,4 @@ public class DFSHila<T> {
 		this.tiempoFinalizacion.put(vertice, tiempo);
 	}
 	
-	public void imprimirTiempoDescubrimiento() {
-		System.out.println(this.tiempoDescubrimiento);
-	}
 }
