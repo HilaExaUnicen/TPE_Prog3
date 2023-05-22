@@ -1,6 +1,7 @@
 package entrega1;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class Main {
 
@@ -122,26 +123,22 @@ public class Main {
 		grafo2.agregarArco(5, 7, null);
 		grafo2.agregarArco(5, 1, null);
 		
-		System.out.println("DFS Hilario");
-		DFSHila<?> dfsH = new DFSHila<>(grafo2);
-		System.out.println(dfsH.dfsForest());
-//		dfsH.imprimirTiempoDescubrimiento();
-//		dfsH.tiempofin();
+		System.out.println("Servicio DFS");
+		ServicioDFS dfs = new ServicioDFS(grafo2);
+		System.out.println(dfs.dfsForest());
 		
+		System.out.println("Servicio BFS");
+		ServicioBFS bfs = new ServicioBFS(grafo2);
+		System.out.println(bfs.bfsForest());
 		
-		System.out.println("DFS Mauro");
-		DFSMauro<?> dfsM = new DFSMauro<>(grafo2);
-		System.out.println(dfsM.dfsForest());
-//		dfsM.imprimirTiempoDescubrimiento();
-//		dfsM.tiempofin();
+		System.out.println("Servicio Caminos");
+		ServicioCaminos caminos = new ServicioCaminos(grafo2, 1, 3, 3);
+		List<List<Integer>> listaCaminos = caminos.caminos();
+		for(List<Integer> lista: listaCaminos) {
+			System.out.println(lista);
+		}
 		
-		System.out.println("BFS Hilario");
-		BFSHila bfsH = new BFSHila(grafo2);
-		System.out.println(bfsH.bfsForest());
-		
-		System.out.println("BFS Mauro");
-		BFSMauro<?> bfsM = new BFSMauro<>(grafo2);
-		System.out.println(bfsM.bfsForest());
+
 	}
 
 }

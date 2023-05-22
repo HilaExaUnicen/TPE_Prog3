@@ -1,5 +1,6 @@
 package entrega1;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -8,17 +9,18 @@ import java.util.Map;
 import java.util.Queue;
 
 
-public class BFSHila {
+public class ServicioBFS {
+
 	private Grafo<?> grafo;
 	private Map<Integer, Boolean> visitado;
 	
-	public BFSHila(Grafo<?> grafo) {
+	public ServicioBFS(Grafo<?> grafo) {
 		this.grafo = grafo;
 		this.visitado = new HashMap<>();
 	}
 	
 	public List<Integer> bfsForest() {
-		LinkedList<Integer> recorrido = new LinkedList<>();
+		ArrayList<Integer> recorrido = new ArrayList<>();
 		
 		Iterator<Integer> itVertices = this.grafo.obtenerVertices();
 		while(itVertices.hasNext()) {
@@ -56,4 +58,5 @@ public class BFSHila {
 			}
 		}
 	}
+	
 }

@@ -5,20 +5,21 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
-public class DFSMauro<T> {
-	private Grafo<T> grafo;
+public class ServicioDFS {
+
+	private Grafo<?> grafo;
     private HashMap<Integer, Integer> tiemposDescubrimiento;
     private HashMap<Integer, Integer> tiemposFinalizacion;
     private HashMap<Integer, Color> colores;
 
-    public DFSMauro(Grafo<T> grafo) {
-        this.grafo = grafo;
+	public ServicioDFS(Grafo<?> grafo) {
+		this.grafo = grafo;
         this.tiemposDescubrimiento = new HashMap<>();
         this.tiemposFinalizacion = new HashMap<>();
         this.colores = new HashMap<>();
-    }
-  
-    public List<Integer> dfsForest() {
+	}
+	
+	public List<Integer> dfsForest() {
         List<Integer> ordenDescubrimiento = new ArrayList<>();
         int tiempo = 0;
         
@@ -59,4 +60,5 @@ public class DFSMauro<T> {
         AMARILLO,
         NEGRO
     }
+
 }

@@ -45,10 +45,7 @@ public class ServicioCaminos {
 			
 			Iterator<Integer> adyacentes = this.grafo.obtenerAdyacentes(origen);
 			while(adyacentes.hasNext()) {
-				
-				if(current.isEmpty()) {
-					current.add(this.origen);
-				}
+			
 				
 				Integer verticeAdy = adyacentes.next();
 				
