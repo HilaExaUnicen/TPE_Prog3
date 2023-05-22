@@ -10,60 +10,54 @@ public class ServicioCaminos {
 	private int origen;
 	private int destino;
 	private int lim;
+	private List<List<Integer>> caminos;
 	
-	// Servicio caminos
+
 	public ServicioCaminos(Grafo<?> grafo, int origen, int destino, int lim) {
 		this.grafo = grafo;
 		this.origen = origen;
 		this.destino = destino;
 		this.lim = lim;
+		this.caminos = new ArrayList<>();
 	}
 
 	public List<List<Integer>> caminos() {
-		List<List<Integer>> caminos = new ArrayList<>();
-		ArrayList<Integer> current = new ArrayList<>();
+		ArrayList<Integer> caminoActual = new ArrayList<>();
+		caminoActual.add(origen);
+		int arcosRecorridos = 0;
 		
-		Iterator<Integer> adyacentes = this.grafo.obtenerAdyacentes(origen);
-		while(adyacentes.hasNext()) {
-			current.add(this.origen);
-			this.dfs(adyacentes.next(), current, caminos);
-			
-			if(current.contains(this.origen) && current.contains(this.destino)) {
-				caminos.add(current);
-			}
-			
-			current.clear();
-		}
-		
-		
+		this.dfs(origen, caminoActual, arcosRecorridos);
 		return caminos;
 	}
 	
-	private void dfs(Integer vertice, ArrayList<Integer> current, List<List<Integer>> caminos) {
-		if(!current.contains(origen)) {
-			current.add(origen);
-			
-			Iterator<Integer> adyacentes = this.grafo.obtenerAdyacentes(origen);
-			while(adyacentes.hasNext()) {
-			
-				
-				Integer verticeAdy = adyacentes.next();
-				
-				if(verticeAdy == this.destino) {
-					current.add(verticeAdy);
-					caminos.add(current);
-					current.clear();
-					return;
-				}
-				
-				if((current.size()-1) > this.lim) {//-1 porque restamos el vertice origen.
-					current.clear();
-					return;
-				}
-				
-				dfs(verticeAdy, current, caminos);
-			}
-			
-		}
-	}
+    private void dfs(int vertice, List<Integer> caminoActual, int arcosRecorridos) {
+        if (vertice == destino && arcosRecorridos <= lim) {
+            caminos.add(new ArrayList<>(caminoActual));
+            return;
+        }
+
+        if (arcosRecorridos >= lim) {
+            return;
+        }
+
+        Iterator<Integer> adyacentes = grafo.obtenerAdyacentes(vertice);
+        
+        while (adyacentes.hasNext()) {
+            Integer siguienteVertice = adyacentes.next();
+
+            if (!caminoActual.contains(siguienteVertice)) {
+                caminoActual.add(siguienteVertice);
+                dfs(siguienteVertice, caminoActual, arcosRecorridos + 1);
+                caminoActual.remove(caminoActual.size() - 1);
+            }
+        }
+    }
 }
+
+
+
+
+
+
+
+

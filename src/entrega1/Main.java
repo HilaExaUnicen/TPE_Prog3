@@ -131,8 +131,29 @@ public class Main {
 		ServicioBFS bfs = new ServicioBFS(grafo2);
 		System.out.println(bfs.bfsForest());
 		
+		Grafo<T> grafo3 = new GrafoDirigido<>();
+		
+		grafo3.agregarVertice(1);
+		grafo3.agregarVertice(2);
+		grafo3.agregarVertice(3);
+		grafo3.agregarVertice(4);
+		grafo3.agregarVertice(5);
+		grafo3.agregarVertice(6);
+		grafo3.agregarVertice(7);
+		
+		grafo3.agregarArco(1, 5, null);
+		grafo3.agregarArco(2, 1, null);
+		grafo3.agregarArco(2, 3, null);
+		grafo3.agregarArco(3, 4, null);
+		grafo3.agregarArco(3, 1, null);
+		grafo3.agregarArco(4, 6, null);
+		grafo3.agregarArco(4, 5, null);
+		grafo3.agregarArco(5, 6, null);
+		grafo3.agregarArco(6, 7, null);
+		
+		
 		System.out.println("Servicio Caminos");
-		ServicioCaminos caminos = new ServicioCaminos(grafo2, 1, 3, 3);
+		ServicioCaminos caminos = new ServicioCaminos(grafo3, 2, 5, 5);
 		List<List<Integer>> listaCaminos = caminos.caminos();
 		for(List<Integer> lista: listaCaminos) {
 			System.out.println(lista);
