@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import entrega1.Grafo;
+import entrega1.GrafoNoDirigido;
+
 
 public class CSVReader {
 
@@ -15,8 +18,8 @@ public class CSVReader {
 		this.path = path;
 	}
 	
-	public void read() {
-		entrega1.GrafoNoDirigido<Integer> estaciones = new entrega1.GrafoNoDirigido<>();
+	public Grafo<?> read() {
+		GrafoNoDirigido<Integer> estaciones = new GrafoNoDirigido<>();
 		// Obtengo una lista con las lineas del archivo
 		// lines.get(0) tiene la primer linea del archivo
 		// lines.get(1) tiene la segunda linea del archivo... y así
@@ -33,9 +36,10 @@ public class CSVReader {
 			
 			estaciones.agregarVertice(origen);
 			estaciones.agregarVertice(destino);
-			estaciones.agregarArco(origen, destino, etiqueta); //Agregamos a un grafo no dirigido.
+			estaciones.agregarArco(origen, destino, etiqueta); //Podriamos agregar las estaciones a un grafo no dirigido.
 		}
 		
+		return estaciones;
 	}
 
 	private ArrayList<String[]> readContent() {

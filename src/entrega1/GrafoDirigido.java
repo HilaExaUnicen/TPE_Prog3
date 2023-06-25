@@ -40,7 +40,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	/**
 	* Complejidad: O(1), ya que solo se le pregunta a la lista de adyacencia de el vertice origen si no 
 	* contiene un arco igual al que se va a agregar, y en el caso de que no lo tenga, se agrega. En este 
-	* caso la lista es un ArrayList, y ambos procedimientos, tanto encontrar un elemento, o agregar un elemento,
+	* caso la lista es un ArrayList, y ambos procedimientos, tanto encontrar un elemento, o agregar un elemento, //CORREGIR
 	* tienen complejidad O(1). 
 	*/
 	@Override
