@@ -36,7 +36,7 @@ public class Greedy extends Algoritmo {
 					
 					estacionActual = destinoMasProximo;
 				}
-				
+				this.metrica++;
 			}
 			
 			int kmsTotalesRutaActual = this.getKmsTotalesRuta(rutaActual);
@@ -47,9 +47,10 @@ public class Greedy extends Algoritmo {
 			
 			s.clear();
 			rutaActual.clear();
+			this.metrica++;
 		}
 		
-		imprimirSolucion("Greedy", mejorRuta, kmsMejorSolucion);//Falta la metrica
+		imprimirSolucion("Greedy", mejorRuta, kmsMejorSolucion, metrica);//Falta la metrica
 	}
 	
 	private int getKmsTotalesRuta(ArrayList<Tunel> rutasConstruidas) {
@@ -79,6 +80,8 @@ public class Greedy extends Algoritmo {
 					estacionMasProxima = estacionActual;
 				}
 			}
+			
+			this.metrica++;
 		}
 		
 		return estacionMasProxima;

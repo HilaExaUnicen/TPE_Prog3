@@ -19,10 +19,11 @@ public class Backtracking extends Algoritmo {
 		while(itEstaciones.hasNext()) {
 			Integer estacionOrigen = itEstaciones.next();
 			backtracka(estacionOrigen, estado);
+			this.metrica++;
 		}
 		
 		
-		super.imprimirSolucion("Backtracking", estado.getMejorRuta(), estado.getCantKmsMejorSolucion());
+		super.imprimirSolucion("Backtracking", estado.getMejorRuta(), estado.getCantKmsMejorSolucion(), metrica);
 		
 		
 	}
@@ -51,6 +52,7 @@ public class Backtracking extends Algoritmo {
 						estado.removeTunelRutaActual();
 						estado.restarKmsRutaActual(nuevoTunel.getEtiqueta());
 					}
+					this.metrica++;
 				}
 			}
 //		}
@@ -126,6 +128,8 @@ public class Backtracking extends Algoritmo {
 				if(!rutaActualTieneEstacion(estacion)) {
 					return false;
 				}
+				
+				metrica++;
 			}
 			
 			return true;
@@ -136,6 +140,7 @@ public class Backtracking extends Algoritmo {
 				if(t.getOrigen() == estacion || t.getDestino() == estacion) {
 					return true;
 				}
+				metrica++;
 			}
 			
 			return false;

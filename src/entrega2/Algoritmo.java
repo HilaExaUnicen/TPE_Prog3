@@ -15,14 +15,14 @@ public abstract class Algoritmo {
 	
 	public abstract void construirTuneles();
 
-	protected void imprimirSolucion(String tecnicaUtilizada, ArrayList<Tunel> rutasConstruidas, int kmsConstruidosTotal) {
+	protected void imprimirSolucion(String tecnicaUtilizada, ArrayList<Tunel> rutasConstruidas, int kmsConstruidosTotal, int metrica) {
 		System.out.println(tecnicaUtilizada);
 		for(Tunel tunel : rutasConstruidas) {
 			System.out.print("[E" + tunel.getOrigen() + ", " + "E" + tunel.getDestino() +  "]");
 		}
 		System.out.println(" ");
 		System.out.println(kmsConstruidosTotal + " kms");
-		System.out.println("X metrica"); //TODO A implementar	
+		System.out.println(metrica + " iteraciones"); //TODO A implementar	
 		System.out.println(" ");
 	}
 }
