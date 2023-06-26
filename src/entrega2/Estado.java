@@ -23,6 +23,8 @@ public class Estado {
 		//metricaCantIteraciones = 0;
 	}
 	
+	
+	
 	public boolean rutaActualContieneTunel(Tunel nuevoTunel) {
 		return this.rutaActual.contains(nuevoTunel);
 	}
@@ -88,4 +90,6 @@ public class Estado {
 		
 		return false;
 	}
+
+
 }

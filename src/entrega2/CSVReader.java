@@ -18,7 +18,7 @@ public class CSVReader {
 		this.path = path;
 	}
 	
-	public Grafo<?> read() {
+	public void read() {
 		GrafoNoDirigido<Integer> estaciones = new GrafoNoDirigido<>();
 		// Obtengo una lista con las lineas del archivo
 		// lines.get(0) tiene la primer linea del archivo
@@ -39,7 +39,12 @@ public class CSVReader {
 			estaciones.agregarArco(origen, destino, etiqueta); //Podriamos agregar las estaciones a un grafo no dirigido.
 		}
 		
-		return estaciones;
+		Greedy greedy = new Greedy(estaciones);
+		Backtracking back = new Backtracking(estaciones);
+		
+		
+		greedy.construirTunelesGreedy();
+		back.construirTunelesBacktracking();
 	}
 
 	private ArrayList<String[]> readContent() {

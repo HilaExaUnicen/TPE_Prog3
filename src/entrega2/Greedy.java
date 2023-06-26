@@ -6,17 +6,10 @@ import java.util.Iterator;
 import entrega1.Arco;
 import entrega1.Grafo;
 
-public class BuscadorRutas {
-	private Grafo<?> estaciones;
-	
-	public BuscadorRutas(String csvEstaciones) {
-		this.estaciones = this.inicializarEstacionesEnGrafo(csvEstaciones);
-	}
-	
-	public Grafo<?> inicializarEstacionesEnGrafo(String csvEstaciones) {
-		CSVReader lectorDocumento = new CSVReader(csvEstaciones);
-		Grafo<?> estaciones = lectorDocumento.read();
-		return estaciones;
+public class Greedy extends Algoritmo {
+
+	public Greedy(Grafo<?> estaciones) {
+		super(estaciones);
 	}
 	
 	public void construirTunelesGreedy() {
@@ -58,7 +51,7 @@ public class BuscadorRutas {
 		
 		imprimirSolucion("Greedy", mejorRuta, kmsMejorSolucion);//Falta la metrica
 	}
-
+	
 	private int getKmsTotalesRuta(ArrayList<Tunel> rutasConstruidas) {
 		int kms = 0;
 		for(Tunel t: rutasConstruidas) {
@@ -90,57 +83,5 @@ public class BuscadorRutas {
 		
 		return estacionMasProxima;
 	}
-	
-	
-	private void imprimirSolucion(String tecnicaUtilizada, ArrayList<Tunel> rutasConstruidas, int kmsConstruidosTotal) {
-		System.out.println(tecnicaUtilizada);
-		for(Tunel tunel : rutasConstruidas) {
-			System.out.print("[E" + tunel.getOrigen() + ", " + "E" + tunel.getDestino() +  "]");
-		}
-		System.out.println(" ");
-		System.out.println(kmsConstruidosTotal + " kms");
-		System.out.println("X metrica"); //TODO A implementar	
-	}
-	
-	
-	
-	public void construirTunelesBacktracking() {
-		Estado estado = new Estado();
-		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();
-		
-		while(itEstaciones.hasNext()) {
-			Integer estacionOrigen = itEstaciones.next();
-			backtracka(estacionOrigen, estado);
-		}
-		
-		
-		imprimirSolucion("Backtracking", estado.getMejorRuta(), estado.getCantKmsMejorSolucion());
-		
-		
-	}
 
-	private void backtracka(Integer estacionOrigen, Estado estado) {
-		if(estado.esEstadoFinal(this.estaciones.obtenerVertices())) {
-			if(estado.getCantKmsRutaActual() < estado.getCantKmsMejorSolucion()) {
-				estado.setMejorRuta();
-				estado.setCantKmsMejorSolucion();
-			}
-		}
-		else {
-			Iterator<Integer> estacionesAdyacentes = this.estaciones.obtenerAdyacentes(estacionOrigen);
-			while(estacionesAdyacentes.hasNext()) {
-				Integer estAdyacente = estacionesAdyacentes.next();
-				Tunel nuevoTunel = new Tunel(estacionOrigen, estAdyacente, (int)this.estaciones.obtenerArco(estacionOrigen, estAdyacente).getEtiqueta());//Etiqueta deberia obtenerse de estado.
-				
-				if(!estado.rutaActualContieneTunel(nuevoTunel)) {
-					estado.addTunelRutaActual(nuevoTunel);
-					estado.sumarKmsRutaActual(nuevoTunel.getEtiqueta());
-					backtracka(estAdyacente, estado);
-					estado.removeTunelRutaActual();
-					estado.restarKmsRutaActual(nuevoTunel.getEtiqueta());
-				}
-			}
-		}
-	}
-	
 }
