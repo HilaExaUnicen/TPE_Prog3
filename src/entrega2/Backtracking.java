@@ -12,7 +12,7 @@ public class Backtracking extends Algoritmo {
 		super(estaciones);
 	}
 
-	public void construirTunelesBacktracking() {
+	public void construirTuneles() {
 		Estado estado = new Estado();
 		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();
 		

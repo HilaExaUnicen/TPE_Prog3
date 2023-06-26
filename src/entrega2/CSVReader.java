@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import entrega1.Grafo;
 import entrega1.GrafoNoDirigido;
 
 
@@ -39,12 +38,12 @@ public class CSVReader {
 			estaciones.agregarArco(origen, destino, etiqueta); //Podriamos agregar las estaciones a un grafo no dirigido.
 		}
 		
-		Greedy greedy = new Greedy(estaciones);
-		Backtracking back = new Backtracking(estaciones);
+		Algoritmo greedy = new Greedy(estaciones);
+		Algoritmo back = new Backtracking(estaciones);
 		
 		
-		greedy.construirTunelesGreedy();
-		back.construirTunelesBacktracking();
+		greedy.construirTuneles();
+		back.construirTuneles();
 	}
 
 	private ArrayList<String[]> readContent() {

@@ -12,7 +12,7 @@ public class Greedy extends Algoritmo {
 		super(estaciones);
 	}
 	
-	public void construirTunelesGreedy() {
+	public void construirTuneles() {
 		//Se desean construir la menor cantidad de tuneles posibles
 		//El criterio greedy deberia ser elegir una estacion origen e ir eligiendo la ruta mas cercana a esta.
 		int kmsMejorSolucion = Integer.MAX_VALUE;

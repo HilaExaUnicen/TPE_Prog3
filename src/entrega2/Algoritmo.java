@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import entrega1.Grafo;
 
-public class Algoritmo {
+public abstract class Algoritmo {
 	protected int metrica;
 	protected Grafo<?> estaciones;
 	
@@ -12,6 +12,8 @@ public class Algoritmo {
 		this.metrica = 0;
 		this.estaciones = estaciones;
 	}
+	
+	public abstract void construirTuneles();
 
 	protected void imprimirSolucion(String tecnicaUtilizada, ArrayList<Tunel> rutasConstruidas, int kmsConstruidosTotal) {
 		System.out.println(tecnicaUtilizada);
