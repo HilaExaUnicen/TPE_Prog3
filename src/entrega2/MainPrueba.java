@@ -2,7 +2,7 @@ package entrega2;
 
 public class MainPrueba {
 	public static void main(String[] args) {
-		String ruta = "../tpe_prog3/datasets/dataset3.txt";//Con esta ruta deberia andar, si no copiar la ruta completa
+		String ruta = "../tpe_prog3/datasets/dataset1.txt";//Con esta ruta deberia andar, si no copiar la ruta completa
 		
 //		estaciones.agregarVertice(1);
 //		estaciones.agregarVertice(2);
@@ -19,8 +19,6 @@ public class MainPrueba {
 		BuscadorRutas buscador = new BuscadorRutas(ruta);
 		buscador.construirTunelesGreedy();
 		System.out.println(" ");
-
-		
-//		buscador.construirTunelesBacktracking();
+		buscador.construirTunelesBacktracking();
 	}
 }

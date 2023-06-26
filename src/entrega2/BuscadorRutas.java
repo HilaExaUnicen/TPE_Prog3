@@ -102,36 +102,45 @@ public class BuscadorRutas {
 		System.out.println("X metrica"); //TODO A implementar	
 	}
 	
+	
+	
 	public void construirTunelesBacktracking() {
-		ArrayList<Tunel> rutaActual = new ArrayList<>();
-		ArrayList<Tunel> mejorRuta = new ArrayList<>();
+		Estado estado = new Estado();
 		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();
 		
 		while(itEstaciones.hasNext()) {
 			Integer estacionOrigen = itEstaciones.next();
-			backtracka(estacionOrigen, rutaActual, mejorRuta);
+			backtracka(estacionOrigen, estado);
 		}
 		
-		int kmsMejorSolucion = this.getKmsTotalesRuta(mejorRuta);
 		
-		//imprimirSolucion("Backtracking, mejorRuta, kmsMejorSolucion);
+		imprimirSolucion("Backtracking", estado.getMejorRuta(), estado.getCantKmsMejorSolucion());
 		
 		
 	}
 
-	private void backtracka(Integer estacionOrigen, ArrayList<Tunel> rutaActual, ArrayList<Tunel> mejorRuta) {
-		if(solucionActualTieneTodosLosElementos(rutaActual)) {
-			
+	private void backtracka(Integer estacionOrigen, Estado estado) {
+		if(estado.esEstadoFinal(this.estaciones.obtenerVertices())) {
+			if(estado.getCantKmsRutaActual() < estado.getCantKmsMejorSolucion()) {
+				estado.setMejorRuta();
+				estado.setCantKmsMejorSolucion();
+			}
 		}
 		else {
-			
+			Iterator<Integer> estacionesAdyacentes = this.estaciones.obtenerAdyacentes(estacionOrigen);
+			while(estacionesAdyacentes.hasNext()) {
+				Integer estAdyacente = estacionesAdyacentes.next();
+				Tunel nuevoTunel = new Tunel(estacionOrigen, estAdyacente, (int)this.estaciones.obtenerArco(estacionOrigen, estAdyacente).getEtiqueta());//Etiqueta deberia obtenerse de estado.
+				
+				if(!estado.rutaActualContieneTunel(nuevoTunel)) {
+					estado.addTunelRutaActual(nuevoTunel);
+					estado.sumarKmsRutaActual(nuevoTunel.getEtiqueta());
+					backtracka(estAdyacente, estado);
+					estado.removeTunelRutaActual();
+					estado.restarKmsRutaActual(nuevoTunel.getEtiqueta());
+				}
+			}
 		}
 	}
-
-	private boolean solucionActualTieneTodosLosElementos(ArrayList<Tunel> rutaActual) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
 	
 }
