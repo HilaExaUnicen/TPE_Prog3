@@ -22,4 +22,17 @@ public class Tunel {
 	public Integer getEtiqueta() {
 		return etiqueta;
 	}
+	
+	public boolean equals(Object o) {
+		try {
+			Tunel otro = (Tunel) o;
+			return (this.origen.equals(otro.getOrigen()) && this.destino.equals(otro.getDestino())) 
+					|| 
+				   (this.origen.equals(otro.getDestino()) && this.destino.equals(otro.getOrigen()));
+		}
+		catch (Exception e){
+			System.out.println(e);
+			return false;
+		}
+	}
 }

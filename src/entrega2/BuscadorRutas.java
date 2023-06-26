@@ -2,11 +2,9 @@ package entrega2;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.HashSet;
 
 import entrega1.Arco;
 import entrega1.Grafo;
-import entrega1.GrafoNoDirigido;
 
 public class BuscadorRutas {
 	private Grafo<?> estaciones;
@@ -15,7 +13,7 @@ public class BuscadorRutas {
 		this.estaciones = this.inicializarEstacionesEnGrafo(csvEstaciones);
 	}
 	
-	public Grafo<?> inicializarEstacionesEnGrafo(String csvEstaciones) {//Deberiamos encontrar una forma mas prolija de inicializarlo
+	public Grafo<?> inicializarEstacionesEnGrafo(String csvEstaciones) {
 		CSVReader lectorDocumento = new CSVReader(csvEstaciones);
 		Grafo<?> estaciones = lectorDocumento.read();
 		return estaciones;
@@ -32,7 +30,6 @@ public class BuscadorRutas {
 		
 		while(itEstaciones.hasNext()) {
 			Integer estacionActual = itEstaciones.next();
-			
 			s.add(estacionActual);
 			
 			while(!(s.size() == this.estaciones.cantidadVertices())) {//Va a cortar cuando todas las estaciones hayan sido seleccionadas
@@ -46,6 +43,7 @@ public class BuscadorRutas {
 					
 					estacionActual = destinoMasProximo;
 				}
+				
 			}
 			
 			int kmsTotalesRutaActual = this.getKmsTotalesRuta(rutaActual);
@@ -94,109 +92,6 @@ public class BuscadorRutas {
 	}
 	
 	
-//	public void construirTunelesBacktracking() {
-//		ArrayList<ArrayList<Integer>> rutaMejorSolucion = new ArrayList<>();
-//		ArrayList<ArrayList<Integer>> rutaActual = new ArrayList<>();
-//		Integer kmsMejorSolucion = 0;
-//
-//		
-//		Iterator<Integer> estaciones = this.estaciones.obtenerVertices();
-//		while(estaciones.hasNext()) {
-//			Integer estacion = estaciones.next();
-//			construirTunelesBacktracking(estacion, rutaActual, rutaMejorSolucion);
-//		}
-//		
-//		kmsMejorSolucion = this.getKmsMejorSolucion(rutaMejorSolucion);
-//		imprimirSolucion("Backtracking", rutaMejorSolucion, kmsMejorSolucion); //Falta la metrica
-//	}
-//	
-//	private void construirTunelesBacktracking(Integer estacion, ArrayList<ArrayList<Integer>> rutaActual, ArrayList<ArrayList<Integer>> rutaMejorSolucion) {
-//		Integer kmsSolucionActual = getKmsSolucionActual(rutaActual);
-//		Integer kmsMejorSolucion = getKmsMejorSolucion(rutaMejorSolucion);
-//		
-//		if(esEstadoFinal(rutaActual)) {//Estado final
-//			if(kmsSolucionActual < kmsMejorSolucion) {
-//				int aux = kmsSolucionActual;
-//				rutaMejorSolucion = new ArrayList<ArrayList<Integer>>(rutaActual);
-//				kmsMejorSolucion = aux;
-//			}
-//		}
-//		else {
-//			Iterator<Integer> adyacentes = this.estaciones.obtenerAdyacentes(estacion);
-//			while(adyacentes.hasNext()) {
-//				Integer estacionActual = adyacentes.next();
-//				ArrayList<Integer> origenDestino = new ArrayList<>();
-//				origenDestino.add(estacion);
-//				origenDestino.add(estacionActual);
-//				if(!rutaEstaEnSolucion(rutaActual, origenDestino)) {
-//					
-//					rutaActual.add(origenDestino);
-//					
-//					construirTunelesBacktracking(estacionActual, rutaActual, rutaMejorSolucion);
-//					
-//					rutaActual.remove(origenDestino);
-//				}
-//			}		
-//		}
-//	}
-//	
-//	private boolean rutaEstaEnSolucion(ArrayList<ArrayList<Integer>> rutaActual, ArrayList<Integer> origenDestino) {
-//		Integer origen = origenDestino.get(0);
-//		Integer destino = origenDestino.get(1);
-//		
-//		for(ArrayList<Integer> tunel : rutaActual) {
-//			if(tunel.contains(origen) && tunel.contains(destino)) {
-//				return true;
-//			}
-//		}
-//		
-//		return false;
-//	}
-//
-//
-//
-//	private Integer getKmsMejorSolucion(ArrayList<ArrayList<Integer>> rutaMejorSolucion) {
-//		if(rutaMejorSolucion.isEmpty()) {
-//			return Integer.MAX_VALUE;
-//		}
-//		else {
-//			int kms = 0;
-//			for(ArrayList<Integer> tunel : rutaMejorSolucion) {
-//				kms = kms + (int) this.estaciones.obtenerArco(tunel.get(0), tunel.get(1)).getEtiqueta();
-//			}
-//			return kms;
-//		}
-//	}
-//	
-//	private Integer getKmsSolucionActual(ArrayList<ArrayList<Integer>> rutaActual) {
-//		if(rutaActual.isEmpty()) {
-//			return 0;
-//		}
-//		
-//		int kms = 0;
-//		for(ArrayList<Integer> tunel : rutaActual) {
-//			kms = kms + getDistanciaArcoElementos(tunel);
-//		}
-//		return kms;
-//	}
-//	
-//	private int getDistanciaArcoElementos(ArrayList<Integer> tunel) {
-//		int distanciaArco = 0;
-//		distanciaArco = distanciaArco + (int) this.estaciones.obtenerArco(tunel.get(0), tunel.get(1)).getEtiqueta();
-//		return distanciaArco;
-//	}
-//
-//	private boolean esEstadoFinal(ArrayList<ArrayList<Integer>> rutaActual) {
-//	    int numEstaciones = this.estaciones.cantidadVertices();
-//	    HashSet<Integer> estacionesConectadas = new HashSet<>();
-//	    for (ArrayList<Integer> tunel : rutaActual) {
-//	        estacionesConectadas.add(tunel.get(0));
-//	        estacionesConectadas.add(tunel.get(1));
-//	    }
-//	    return estacionesConectadas.size() == numEstaciones;
-//	}
-	
-
 	private void imprimirSolucion(String tecnicaUtilizada, ArrayList<Tunel> rutasConstruidas, int kmsConstruidosTotal) {
 		System.out.println(tecnicaUtilizada);
 		for(Tunel tunel : rutasConstruidas) {
@@ -204,9 +99,39 @@ public class BuscadorRutas {
 		}
 		System.out.println(" ");
 		System.out.println(kmsConstruidosTotal + " kms");
-		//syso(Metrica a decidir); 		
+		System.out.println("X metrica"); //TODO A implementar	
 	}
 	
+	public void construirTunelesBacktracking() {
+		ArrayList<Tunel> rutaActual = new ArrayList<>();
+		ArrayList<Tunel> mejorRuta = new ArrayList<>();
+		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();
+		
+		while(itEstaciones.hasNext()) {
+			Integer estacionOrigen = itEstaciones.next();
+			backtracka(estacionOrigen, rutaActual, mejorRuta);
+		}
+		
+		int kmsMejorSolucion = this.getKmsTotalesRuta(mejorRuta);
+		
+		//imprimirSolucion("Backtracking, mejorRuta, kmsMejorSolucion);
+		
+		
+	}
+
+	private void backtracka(Integer estacionOrigen, ArrayList<Tunel> rutaActual, ArrayList<Tunel> mejorRuta) {
+		if(solucionActualTieneTodosLosElementos(rutaActual)) {
+			
+		}
+		else {
+			
+		}
+	}
+
+	private boolean solucionActualTieneTodosLosElementos(ArrayList<Tunel> rutaActual) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 	
 }
