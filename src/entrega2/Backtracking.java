@@ -3,12 +3,11 @@ package entrega2;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import entrega1.Grafo;
 import entrega1.GrafoNoDirigido;
 
 public class Backtracking extends Algoritmo {
 	
-	public Backtracking(Grafo<?> estaciones) {
+	public Backtracking(GrafoNoDirigido<?> estaciones) {
 		super(estaciones);
 	}
 
@@ -63,7 +62,6 @@ public class Backtracking extends Algoritmo {
 		private ArrayList<Tunel> mejorRuta = new ArrayList<>();
 		private int cantKmsRutaActual;
 		private int cantKmsMejorSolucion;
-		private GrafoNoDirigido<?> tuneles;
 		//private int metricaCantIteraciones;
 		
 		public Estado() {
@@ -71,12 +69,9 @@ public class Backtracking extends Algoritmo {
 			mejorRuta = new ArrayList<>();
 			cantKmsRutaActual = 0;
 			cantKmsMejorSolucion = Integer.MAX_VALUE;
-			tuneles = new GrafoNoDirigido<>();
 			//metricaCantIteraciones = 0;
 		}
-		
-		
-		
+	
 		public boolean rutaActualContieneTunel(Tunel nuevoTunel) {
 			return this.rutaActual.contains(nuevoTunel);
 		}

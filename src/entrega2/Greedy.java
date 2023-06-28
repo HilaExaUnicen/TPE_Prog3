@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import entrega1.Arco;
-import entrega1.Grafo;
+import entrega1.GrafoNoDirigido;
 
 public class Greedy extends Algoritmo {
 
-	public Greedy(Grafo<?> estaciones) {
+	public Greedy(GrafoNoDirigido<?> estaciones) {
 		super(estaciones);
 	}
 	

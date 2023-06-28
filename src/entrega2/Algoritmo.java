@@ -2,15 +2,15 @@ package entrega2;
 
 import java.util.ArrayList;
 
-import entrega1.Grafo;
+import entrega1.GrafoNoDirigido;
 
 public abstract class Algoritmo {
 	protected int metrica;
-	protected Grafo<?> estaciones;
+	protected GrafoNoDirigido<?> estaciones;
 	
-	public Algoritmo(Grafo<?> estaciones) {
+	public Algoritmo(GrafoNoDirigido<?> estaciones2) {
 		this.metrica = 0;
-		this.estaciones = estaciones;
+		this.estaciones = estaciones2;
 	}
 	
 	public abstract void construirTuneles();
