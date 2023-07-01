@@ -35,12 +35,11 @@ public class CSVReader {
 			
 			estaciones.agregarVertice(origen);
 			estaciones.agregarVertice(destino);
-			estaciones.agregarArco(origen, destino, etiqueta); //Podriamos agregar las estaciones a un grafo no dirigido.
+			estaciones.agregarArco(origen, destino, etiqueta);
 		}
 		
 		Algoritmo greedy = new Greedy(estaciones);
 		Algoritmo back = new Backtracking(estaciones);
-		
 		
 		greedy.construirTuneles();
 		back.construirTuneles();

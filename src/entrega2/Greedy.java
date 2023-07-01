@@ -8,16 +8,14 @@ import entrega1.GrafoNoDirigido;
 
 public class Greedy extends Algoritmo {
 
-	public Greedy(GrafoNoDirigido<?> estaciones) {
-		super(estaciones);
+	public Greedy(GrafoNoDirigido<Integer> grafoEstaciones) {
+		super(grafoEstaciones, "Greedy");
 	}
 	
 	public void construirTuneles() {
 		//Se desean construir la menor cantidad de tuneles posibles
 		//El criterio greedy deberia ser elegir una estacion origen e ir eligiendo la ruta mas cercana a esta.
-		int kmsMejorSolucion = Integer.MAX_VALUE;
 		ArrayList<Tunel> rutaActual = new ArrayList<>();
-		ArrayList<Tunel> mejorRuta = new ArrayList<>();
 		ArrayList<Integer> s = new ArrayList<>(); //Guarda las estaciones ya seleccionadas (selected);
 		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();
 		
@@ -42,7 +40,7 @@ public class Greedy extends Algoritmo {
 			int kmsTotalesRutaActual = this.getKmsTotalesRuta(rutaActual);
 			if(kmsTotalesRutaActual < kmsMejorSolucion) {
 				kmsMejorSolucion = kmsTotalesRutaActual;
-				mejorRuta = new ArrayList<>(rutaActual);
+				mejorSolucion = new ArrayList<>(rutaActual);
 			}
 			
 			s.clear();
@@ -50,7 +48,7 @@ public class Greedy extends Algoritmo {
 			this.metrica++;
 		}
 		
-		imprimirSolucion("Greedy", mejorRuta, kmsMejorSolucion, metrica);//Falta la metrica
+		imprimirSolucion(this.getNombre(), this.getMejorSolucion(), this.getKmsMejorSolucion(), this.getMetrica());//Falta la metrica
 	}
 	
 	private int getKmsTotalesRuta(ArrayList<Tunel> rutasConstruidas) {
@@ -86,5 +84,4 @@ public class Greedy extends Algoritmo {
 		
 		return estacionMasProxima;
 	}
-
 }

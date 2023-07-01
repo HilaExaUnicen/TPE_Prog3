@@ -2,6 +2,8 @@ package entrega1;
 
 import java.util.*;
 
+import entrega2.Tunel;
+
 public class GrafoDirigido<T> implements Grafo<T> {
 	private Map<Integer, ArrayList<Arco<T>>> vertices = new HashMap<>();
 
@@ -119,6 +121,15 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	    }
 	    
 	    return null;
+	}
+	
+	public Tunel obtenerTunel(int verticeOrigen, int verticeDestino) {
+		Arco<T> arco = this.obtenerArco(verticeOrigen, verticeDestino);
+		if(arco == null) {
+			return null;
+		}
+		
+		return new Tunel(arco.getVerticeOrigen(), arco.getVerticeDestino(), (int)arco.getEtiqueta());
 	}
 	
 	
