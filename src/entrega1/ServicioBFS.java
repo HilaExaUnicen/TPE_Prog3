@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
-
 public class ServicioBFS {
 
 	private Grafo<?> grafo;
