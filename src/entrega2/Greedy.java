@@ -13,8 +13,6 @@ public class Greedy extends Algoritmo {
 	}
 	
 	public void construirTuneles() {
-		//Se desean construir la menor cantidad de tuneles posibles
-		//El criterio greedy deberia ser elegir una estacion origen e ir eligiendo la ruta mas cercana a esta.
 		ArrayList<Tunel> rutaActual = new ArrayList<>();
 		ArrayList<Integer> s = new ArrayList<>(); //Guarda las estaciones ya seleccionadas (selected);
 		Iterator<Integer> itEstaciones = this.estaciones.obtenerVertices();

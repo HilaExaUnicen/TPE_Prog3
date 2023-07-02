@@ -31,7 +31,7 @@ public class Backtracking extends Algoritmo {
 	    
 	    
 	
-	    public void backtracking(Estado estado, Integer estacionActual, Integer estacionAnterior, LinkedList<Integer> estacionesNoVisitadas){
+	    private void backtracking(Estado estado, Integer estacionActual, Integer estacionAnterior, LinkedList<Integer> estacionesNoVisitadas){
 	    	estacionesNoVisitadas.remove(estacionActual);
 	        if(estado.getDistanciaActual() < this.kmsMejorSolucion && estacionesNoVisitadas.isEmpty()){
 	            this.kmsMejorSolucion = estado.getDistanciaActual();
@@ -63,10 +63,12 @@ public class Backtracking extends Algoritmo {
 	    }
 	    
 		private void inicializarListaEstacionesNoVisitadas(LinkedList <Integer> lista){
-			Iterator<Integer> itEstaciones = estaciones.obtenerVertices(); //Esto podria ser un map para mas consistencia y evitar repetidos
+			Iterator<Integer> itEstaciones = estaciones.obtenerVertices();
 	        while(itEstaciones.hasNext()){
 	            Integer v = itEstaciones.next();
-	            lista.add(v);
+	            if(!lista.contains(v)) {
+	            	lista.add(v);
+	            }
 	        }
         }
 		
@@ -82,7 +84,7 @@ public class Backtracking extends Algoritmo {
 			}
 
 	        public void eliminarDeSolucionActual() {
-	        	this.solucionActual.remove(this.solucionActual.size()-1);//TODO CUIDADO chequear q se elimine el ultimo
+	        	this.solucionActual.remove(this.solucionActual.size()-1);
 			}
 
 			public void agregarASolucionActual(Tunel nuevoTunel) {
@@ -107,7 +109,7 @@ public class Backtracking extends Algoritmo {
 				return copia;
 			}			
 		}
-	}
+}
 
 
 
