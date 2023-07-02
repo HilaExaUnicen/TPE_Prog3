@@ -40,10 +40,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
     }
 
 	/**
-	* Complejidad: O(1), ya que solo se le pregunta a la lista de adyacencia de el vertice origen si no 
-	* contiene un arco igual al que se va a agregar, y en el caso de que no lo tenga, se agrega. En este 
-	* caso la lista es un ArrayList, y ambos procedimientos, tanto encontrar un elemento, o agregar un elemento, //CORREGIR
-	* tienen complejidad O(1). 
+	* Complejidad: O(n), ya que pregunta en la lista de adyacencias del vertice origen si
+	* existe el arco a agregar con el metodo contains() (tiene complejidad O(n) en el peor caso),
+	*  y luego, usa el metodo add() para agregarlo en la lista de adyacencia del vertice origen.
 	*/
 	@Override
 	public void agregarArco(int verticeId1, int verticeId2, T etiqueta) {
@@ -57,8 +56,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	/**
-	* Complejidad: O(n^2), siendo n el numero de arcos del verticeOrigen, ya que en el peor de los casos se
-	* borraria el ultimo arco de la lista de adyacencia de este.
+	* Complejidad: O(n + m), siendo n el numero de arcos del verticeOrigen, ya que en el peor de los casos se
+	* borraria el ultimo arco de la lista de adyacencia de este, usando el metodo remove() de ArrayList,
+	* que tiene una complejidad de O(m).
 	*/
 	@Override
 	public void borrarArco(int verticeOrigen, int verticeDestino) {

@@ -1,4 +1,4 @@
-	package entrega1;
+package entrega1;
 
 import java.util.Iterator;
 import java.util.List;
