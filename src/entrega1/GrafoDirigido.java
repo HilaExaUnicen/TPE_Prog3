@@ -57,7 +57,7 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	/**
-	* Complejidad: O(n), siendo n el numero de arcos del verticeOrigen, ya que en el peor de los casos se
+	* Complejidad: O(n^2), siendo n el numero de arcos del verticeOrigen, ya que en el peor de los casos se
 	* borraria el ultimo arco de la lista de adyacencia de este.
 	*/
 	@Override
@@ -156,9 +156,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	}
 	
 	/**
-	* Complejidad: O(1), ya que se realiza una copia de las claves del mapa "vertices" 
+	* Complejidad: O(n), siendo n el numero de vertices a copiar, ya que se realiza una copia de las claves del mapa "vertices" 
 	* y las almacena en un nuevo ArrayList llamado "itVertices" con el metodo keySet de HashMap que 
-	* es un metodo constante O(1), y lo devuelve como iterador
+	* devuelve las claves, y lo devuelve como iterador
 	*/	
 	@Override
 	public Iterator<Integer> obtenerVertices() {
@@ -184,8 +184,9 @@ public class GrafoDirigido<T> implements Grafo<T> {
 	
 	
 	/**
-	* Complejidad: O(n), siendo n la cantidad de arcos del grafo, ya que se tienen que agregar los n
-	* arcos a un nuevo arreglo y luego devolverlo en forma de iterador
+	* Complejidad: O(n + m), siendo n la cantidad de arcos del grafo, ya que se tienen que agregar los n
+	* arcos a un nuevo arreglo. Para esto se utiliza el metodo addAll que tambien es O(m),  
+	* y luego devolverlo en forma de iterador
 	*/	
 	@Override
 	public Iterator<Arco<T>> obtenerArcos() {
